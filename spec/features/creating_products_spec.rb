@@ -2,16 +2,17 @@ require 'spec_helper'
 
 feature 'Product Management' do
   scenario 'User creates a new product' do
-    visit '/products/new'
+    #visit '/products/new'
+    visit new_product_path
 
     fill_in 'Name', with: 'Product'
     fill_in 'Description', with: 'Some product description'
-    fill_in 'Image url', with: 'https://github-images.s3.amazonaws.com/help/repository/https-url-clone.png'
-    fill_in 'Price', with: '29.99'
+    fill_in 'Image URL', with: 'https://github-images.s3.amazonaws.com/help/repository/https-url-clone.png'
+    fill_in 'Price', with: 29.99
 
     click_on 'Create'
 
-    expect(page).to have_text('Product was successfully created.')
+    expect(page).to have_content('Product was successfully created.')
   end
 
   scenario 'User edits an existing product' do
@@ -20,7 +21,7 @@ feature 'Product Management' do
 
     fill_in 'Name', with: 'New Name'
     fill_in 'Description', with: 'Some new description'
-    fill_in 'Image url', with: 'https://github-images.s3.amazonaws.com/help/repository/https-url-clone.png'
+    fill_in 'Image URL', with: 'https://github-images.s3.amazonaws.com/help/repository/https-url-clone.png'
     fill_in 'Price', with: '29.99'
 
     click_button 'Update Product'
